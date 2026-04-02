@@ -380,6 +380,56 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .service-link:hover { color: var(--navy); }
 
 /* =============================================
+   MISSION
+   ============================================= */
+.mission {
+  padding: 100px 0;
+  background: var(--navy);
+  text-align: center;
+}
+
+.mission-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.mission .section-eyebrow {
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+
+.mission-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 28px;
+  border: none;
+  padding: 0;
+  position: relative;
+}
+
+.mission-quote::before {
+  content: '\201C';
+  font-size: 5rem;
+  color: var(--gold);
+  opacity: 0.4;
+  position: absolute;
+  top: -24px;
+  left: -20px;
+  line-height: 1;
+  font-family: var(--font-serif);
+}
+
+.mission-body {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+
+/* =============================================
    ABOUT
    ============================================= */
 .about {
