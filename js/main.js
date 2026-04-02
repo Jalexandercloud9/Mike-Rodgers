@@ -64,6 +64,54 @@ if (bookForm) {
   });
 }
 
+// --- Gallery Carousel ---
+(function () {
+  const track   = document.getElementById('galleryTrack');
+  const dotsWrap = document.getElementById('galleryDots');
+  if (!track) return;
+
+  const slides = track.querySelectorAll('.gallery-slide');
+  const total  = slides.length;
+  let current  = 0;
+  let timer;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function goTo(index) {
+    current = (index + total) % total;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dotsWrap.querySelectorAll('.gallery-dot').forEach((d, i) =>
+      d.classList.toggle('active', i === current)
+    );
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => goTo(current + 1), 4500);
+  }
+
+  document.getElementById('galleryPrev').addEventListener('click', () => goTo(current - 1));
+  document.getElementById('galleryNext').addEventListener('click', () => goTo(current + 1));
+
+  // Touch swipe support
+  let touchStartX = 0;
+  track.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(current + (diff > 0 ? 1 : -1));
+  });
+
+  resetTimer();
+})();
+
 // --- Intersection Observer: fade-in sections on scroll ---
 const observerOpts = { threshold: 0.12 };
 const observer = new IntersectionObserver((entries) => {
