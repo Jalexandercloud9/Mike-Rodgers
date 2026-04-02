@@ -451,12 +451,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .gallery-slide {
   min-width: 100%;
   flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
 }
 
 .gallery-slide img {
-  width: 100%;
+  max-height: 28vh;
+  width: auto;
+  max-width: 100%;
   height: auto;
   display: block;
+  border-radius: 8px;
 }
 
 .gallery-btn {
