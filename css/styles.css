@@ -609,20 +609,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .certs-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
-.cert-pill {
-  display: inline-block;
-  padding: 14px 28px;
-  border-radius: 50px;
-  background: rgba(201,168,76,0.15);
-  color: var(--gold-light);
-  font-size: 0.95rem;
-  font-weight: 600;
+.cert-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  transition: transform var(--transition);
+}
+
+.cert-img:hover {
+  transform: scale(1.03);
+}
+
+@media (max-width: 768px) {
+  .certs-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .certs-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
 }
 
 /* =============================================
