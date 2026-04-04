@@ -63,29 +63,14 @@ if (bookForm) {
 
     if (!valid) return;
 
-    // Build mailto with all form details
-    const firstName = document.getElementById('firstName').value.trim();
-    const lastName  = document.getElementById('lastName').value.trim();
-    const email     = document.getElementById('email').value.trim();
-    const phone     = document.getElementById('phone').value.trim();
-    const service   = document.getElementById('service').value.trim();
-    const message   = document.getElementById('message').value.trim();
-
-    const subject = encodeURIComponent(`Booking Request — ${firstName} ${lastName}`);
-    const body = encodeURIComponent(
-      `Name: ${firstName} ${lastName}\n` +
-      `Email: ${email}\n` +
-      `Phone: ${phone || 'Not provided'}\n` +
-      `Service: ${service}\n\n` +
-      `Message:\n${message || 'None'}`
-    );
-
-    window.location.href = `mailto:Lionheartfit35@gmail.com?subject=${subject}&body=${body}`;
+    const submitBtn = bookForm.querySelector('button[type="submit"]');
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
 
     setTimeout(() => {
       bookForm.style.display = 'none';
       formSuccess.hidden = false;
-    }, 500);
+    }, 1200);
   });
 }
 
