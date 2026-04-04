@@ -209,14 +209,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================= */
 .hero {
   position: relative;
-  color: var(--white);
+  height: 65vh;
+  min-height: 440px;
   overflow: hidden;
+  color: var(--white);
 }
 
 .hero-bg-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
-  display: block;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
 }
 
 .hero-overlay {
@@ -240,12 +245,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   align-items: center;
   justify-content: center;
   text-align: center;
-  max-width: 720px;
-  margin: 0 auto;
   padding: 0 24px;
   animation: fadeUp 0.9s ease both;
-  left: 0;
-  right: 0;
 }
 
 @keyframes fadeUp {
