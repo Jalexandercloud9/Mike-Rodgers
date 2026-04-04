@@ -154,14 +154,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .nav-logo {
-  display: flex;
-  align-items: center;
-}
-
-.nav-logo-img {
-  height: 56px;
-  width: auto;
-  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
 }
 
 .nav-links {
@@ -941,10 +938,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   text-align: center;
 }
 
-.footer-logo-img {
-  height: 80px;
-  width: auto;
-  display: block;
+.footer-name {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--white);
 }
 
 .footer-social {
