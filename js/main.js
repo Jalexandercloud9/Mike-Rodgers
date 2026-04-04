@@ -73,16 +73,17 @@ if (bookForm) {
   const muteLabel = muteBtn && muteBtn.querySelector('span');
   if (!video || !muteBtn) return;
 
-  // Autoplay when 50% visible
+  // Play/pause based on visibility
   const videoObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
+        video.muted = true;
         video.play().catch(() => {});
       } else {
         video.pause();
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.2 });
 
   videoObserver.observe(video);
 
