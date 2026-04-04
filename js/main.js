@@ -28,7 +28,7 @@ navLinks.querySelectorAll('.nav-link').forEach(link => {
 });
 
 // Close mobile nav when tapping outside
-document.addEventListener('click', (e) => {
+function closeNavIfOutside(e) {
   if (navLinks.classList.contains('open') &&
       !navLinks.contains(e.target) &&
       !navToggle.contains(e.target)) {
@@ -36,7 +36,9 @@ document.addEventListener('click', (e) => {
     navToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
-});
+}
+document.addEventListener('click', closeNavIfOutside);
+document.addEventListener('touchstart', closeNavIfOutside, { passive: true });
 
 // --- Footer year ---
 const yearEl = document.getElementById('year');
