@@ -159,10 +159,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .nav-logo-img {
-  height: 44px;
+  height: 56px;
   width: auto;
   display: block;
-  border-radius: 6px;
 }
 
 .nav-links {
@@ -943,10 +942,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .footer-logo-img {
-  height: 60px;
+  height: 80px;
   width: auto;
   display: block;
-  border-radius: 8px;
 }
 
 .footer-social {
