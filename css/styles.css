@@ -209,22 +209,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================= */
 .hero {
   position: relative;
-  height: 60vh;
-  min-height: 420px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
   color: var(--white);
+  overflow: hidden;
 }
 
 .hero-bg-img {
-  position: absolute;
-  inset: 0;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  display: block;
 }
 
 .hero-overlay {
@@ -232,20 +224,28 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   inset: 0;
   background: linear-gradient(
     135deg,
-    rgba(10, 20, 45, 0.78) 0%,
-    rgba(10, 20, 45, 0.50) 60%,
-    rgba(10, 20, 45, 0.30) 100%
+    rgba(10, 20, 45, 0.72) 0%,
+    rgba(10, 20, 45, 0.45) 60%,
+    rgba(10, 20, 45, 0.25) 100%
   );
   z-index: 1;
 }
 
 .hero-content {
-  position: relative;
+  position: absolute;
+  inset: 0;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   max-width: 720px;
+  margin: 0 auto;
   padding: 0 24px;
   animation: fadeUp 0.9s ease both;
+  left: 0;
+  right: 0;
 }
 
 @keyframes fadeUp {
@@ -539,9 +539,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .about-img {
   width: 100%;
-  height: 460px;
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  display: block;
   border-radius: var(--radius);
   box-shadow: var(--shadow-lg);
 }
@@ -927,7 +926,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 @media (max-width: 768px) {
-  .hero { height: 100vh; }
 
   /* Nav */
   .nav-toggle {
