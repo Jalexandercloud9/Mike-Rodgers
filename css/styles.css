@@ -721,11 +721,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-top: 40px;
   border-radius: var(--radius);
   overflow: hidden;
-  max-width: 400px;
+  max-width: 800px;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   position: relative;
+}
+
+.video-wrap--testimonial {
+  max-height: 400px;
+}
+
+.video-wrap--testimonial video {
+  max-height: 400px;
+  object-fit: contain;
 }
 
 .video-wrap video {
