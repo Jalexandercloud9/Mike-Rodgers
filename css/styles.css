@@ -209,8 +209,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================= */
 .hero {
   position: relative;
-  height: 100vh;
-  min-height: 600px;
+  height: 60vh;
+  min-height: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -927,6 +927,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 @media (max-width: 768px) {
+  .hero { height: 100vh; }
+
   /* Nav */
   .nav-toggle {
     display: flex;
