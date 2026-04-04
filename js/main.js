@@ -96,6 +96,36 @@ if (bookForm) {
   });
 })();
 
+// --- Testimonial video autoplay ---
+(function () {
+  const video      = document.getElementById('testimonialVideo');
+  const muteBtn    = document.getElementById('testimonialMuteBtn');
+  const muteIcon   = document.getElementById('testimonialMuteIcon');
+  const unmuteIcon = document.getElementById('testimonialUnmuteIcon');
+  const muteLabel  = muteBtn && muteBtn.querySelector('span');
+  if (!video || !muteBtn) return;
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video.muted = true;
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.2 });
+
+  obs.observe(video);
+
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteIcon.hidden   = !video.muted;
+    unmuteIcon.hidden =  video.muted;
+    muteLabel.textContent = video.muted ? 'Muted' : 'Sound On';
+  });
+})();
+
 // --- Gallery Carousel ---
 (function () {
   const track   = document.getElementById('galleryTrack');

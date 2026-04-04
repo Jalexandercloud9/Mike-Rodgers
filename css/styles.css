@@ -765,6 +765,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* =============================================
+   TESTIMONIAL
+   ============================================= */
+.testimonial-section {
+  padding: 56px 0;
+  background: var(--off-white);
+}
+
+/* =============================================
    BOOK ME
    ============================================= */
 .book {
