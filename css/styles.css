@@ -61,7 +61,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .section-header {
   text-align: center;
-  margin-bottom: 56px;
+  margin-bottom: 32px;
 }
 
 .section-eyebrow {
@@ -275,7 +275,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: clamp(1rem, 2.5vw, 1.25rem);
   font-weight: 300;
   opacity: 0.9;
-  margin-bottom: 40px;
+  margin-bottom: 24px;
   letter-spacing: 0.01em;
 }
 
@@ -312,7 +312,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    SERVICES
    ============================================= */
 .services {
-  padding: 100px 0;
+  padding: 56px 0;
   background: var(--off-white);
 }
 
@@ -325,7 +325,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .service-card {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 36px 28px;
+  padding: 24px 20px;
   box-shadow: var(--shadow);
   transition: transform var(--transition), box-shadow var(--transition);
   display: flex;
@@ -383,7 +383,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    MISSION
    ============================================= */
 .mission {
-  padding: 100px 0;
+  padding: 56px 0;
   background: var(--navy);
   text-align: center;
 }
@@ -404,7 +404,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-weight: 700;
   color: var(--white);
   line-height: 1.2;
-  margin-bottom: 28px;
+  margin-bottom: 16px;
   border: none;
   padding: 0;
   position: relative;
@@ -434,7 +434,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================= */
 .gallery {
   background: var(--navy);
-  padding: 0 0 48px;
+  padding: 0 0 24px;
 }
 
 .gallery-track-wrap {
@@ -522,14 +522,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ABOUT
    ============================================= */
 .about {
-  padding: 100px 0;
+  padding: 56px 0;
   background: var(--white);
 }
 
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: 48px;
   align-items: center;
 }
 
@@ -539,7 +539,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .about-img {
   width: 100%;
-  height: 600px;
+  height: 460px;
   object-fit: cover;
   object-position: center top;
   border-radius: var(--radius);
@@ -594,8 +594,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* --- Certifications strip --- */
 .certifications {
   background: var(--navy);
-  padding: 48px 0;
-  margin-top: 80px;
+  padding: 32px 0;
+  margin-top: 40px;
 }
 
 .certs-label {
@@ -638,7 +638,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    SOCIAL CONTENT
    ============================================= */
 .content {
-  padding: 100px 0;
+  padding: 56px 0;
   background: var(--navy);
 }
 
@@ -721,14 +721,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    BOOK ME
    ============================================= */
 .book {
-  padding: 100px 0;
+  padding: 56px 0;
   background: var(--gray-100);
 }
 
 .book-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 72px;
+  gap: 40px;
   align-items: start;
 }
 
@@ -775,7 +775,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .book-form {
   background: var(--white);
   border-radius: var(--radius);
-  padding: 40px;
+  padding: 28px 24px;
   box-shadow: var(--shadow);
 }
 
@@ -789,7 +789,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   flex-direction: column;
   gap: 6px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 .form-group label {
@@ -863,14 +863,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ============================================= */
 .footer {
   background: var(--navy);
-  padding: 40px 0;
+  padding: 24px 0;
 }
 
 .footer-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 12px;
   text-align: center;
 }
 
@@ -1002,10 +1002,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 @media (max-width: 480px) {
   .services, .about, .content, .book {
-    padding: 72px 0;
+    padding: 40px 0;
   }
 
   .section-header {
-    margin-bottom: 40px;
+    margin-bottom: 24px;
   }
 }
