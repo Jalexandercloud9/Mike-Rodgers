@@ -64,6 +64,37 @@ if (bookForm) {
   });
 }
 
+// --- Autoplay video on scroll into view ---
+(function () {
+  const video    = document.getElementById('heroVideo');
+  const muteBtn  = document.getElementById('videoMuteBtn');
+  const muteIcon = document.getElementById('muteIcon');
+  const unmuteIcon = document.getElementById('unmuteIcon');
+  const muteLabel = muteBtn && muteBtn.querySelector('span');
+  if (!video || !muteBtn) return;
+
+  // Autoplay when 50% visible
+  const videoObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, { threshold: 0.5 });
+
+  videoObserver.observe(video);
+
+  // Mute toggle
+  muteBtn.addEventListener('click', () => {
+    video.muted = !video.muted;
+    muteIcon.hidden   = !video.muted;
+    unmuteIcon.hidden =  video.muted;
+    muteLabel.textContent = video.muted ? 'Muted' : 'Sound On';
+  });
+})();
+
 // --- Gallery Carousel ---
 (function () {
   const track   = document.getElementById('galleryTrack');
