@@ -425,28 +425,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-bottom: 24px;
 }
 
-.mission-quote {
+.mission-statement {
   font-family: var(--font-serif);
   font-size: clamp(1.6rem, 3.5vw, 2.4rem);
   font-weight: 700;
   color: var(--white);
   line-height: 1.2;
   margin-bottom: 16px;
-  border: none;
-  padding: 0;
-  position: relative;
-}
-
-.mission-quote::before {
-  content: '\201C';
-  font-size: 5rem;
-  color: var(--gold);
-  opacity: 0.4;
-  position: absolute;
-  top: -24px;
-  left: -20px;
-  line-height: 1;
-  font-family: var(--font-serif);
 }
 
 .mission-body {
