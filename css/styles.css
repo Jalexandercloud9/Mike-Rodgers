@@ -717,6 +717,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: translateX(4px);
 }
 
+.video-wrap {
+  margin-top: 40px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+}
+
+.video-wrap video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 /* =============================================
    BOOK ME
    ============================================= */
