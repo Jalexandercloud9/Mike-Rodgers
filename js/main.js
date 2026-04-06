@@ -47,6 +47,7 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 // --- Contact form (client-side only; wire to backend / Formspree as needed) ---
 const bookForm    = document.getElementById('bookForm');
 const formSuccess = document.getElementById('formSuccess');
+const formError   = document.getElementById('formError');
 
 if (bookForm) {
   bookForm.addEventListener('submit', async (e) => {
@@ -68,6 +69,7 @@ if (bookForm) {
     const submitBtn = bookForm.querySelector('button[type="submit"]');
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
+    if (formError) formError.textContent = '';
 
     try {
       const response = await fetch('https://formspree.io/f/mwvwaood', {
@@ -80,14 +82,16 @@ if (bookForm) {
         bookForm.style.display = 'none';
         formSuccess.classList.add('visible');
       } else {
+        const data = await response.json().catch(() => ({}));
+        const msg = (data.errors && data.errors[0] && data.errors[0].message) || 'Something went wrong. Please try again.';
+        if (formError) formError.textContent = msg;
         submitBtn.textContent = 'Send Message';
         submitBtn.disabled = false;
-        alert('Something went wrong. Please try again.');
       }
     } catch (err) {
+      if (formError) formError.textContent = 'Network error — please check your connection and try again.';
       submitBtn.textContent = 'Send Message';
       submitBtn.disabled = false;
-      alert('Something went wrong. Please try again.');
     }
   });
 }

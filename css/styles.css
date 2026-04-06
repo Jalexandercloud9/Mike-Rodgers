@@ -914,6 +914,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin-top: 12px;
 }
 
+.form-error {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #ef4444;
+  margin-top: 8px;
+  min-height: 1.2em;
+}
+
 .form-success {
   display: none;
   flex-direction: column;

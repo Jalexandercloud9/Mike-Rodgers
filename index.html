@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=27" />
+  <link rel="stylesheet" href="css/styles.css?v=28" />
 </head>
 <body>
 
@@ -293,7 +293,7 @@
             <li>In-person &amp; online options</li>
           </ul>
         </div>
-        <form class="book-form" id="bookForm" action="mailto:Lionheartfit35@gmail.com" method="POST" enctype="text/plain" novalidate>
+        <form class="book-form" id="bookForm" novalidate>
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name</label>
@@ -329,6 +329,7 @@
           </div>
           <button type="submit" class="btn btn-primary btn-full">Send Message</button>
           <p class="form-note">Coach Mike will be in touch within 1–2 business days.</p>
+          <p class="form-error" id="formError"></p>
         </form>
 
         <div class="form-success" id="formSuccess">
