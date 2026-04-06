@@ -49,7 +49,7 @@ const bookForm    = document.getElementById('bookForm');
 const formSuccess = document.getElementById('formSuccess');
 
 if (bookForm) {
-  bookForm.addEventListener('submit', (e) => {
+  bookForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Basic validation
@@ -69,10 +69,26 @@ if (bookForm) {
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
-    setTimeout(() => {
-      bookForm.style.display = 'none';
-      formSuccess.hidden = false;
-    }, 1200);
+    try {
+      const response = await fetch('https://formspree.io/f/mwvwaood', {
+        method: 'POST',
+        body: new FormData(bookForm),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        bookForm.style.display = 'none';
+        formSuccess.hidden = false;
+      } else {
+        submitBtn.textContent = 'Send Message';
+        submitBtn.disabled = false;
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (err) {
+      submitBtn.textContent = 'Send Message';
+      submitBtn.disabled = false;
+      alert('Something went wrong. Please try again.');
+    }
   });
 }
 
