@@ -78,7 +78,7 @@ if (bookForm) {
 
       if (response.ok) {
         bookForm.style.display = 'none';
-        formSuccess.hidden = false;
+        formSuccess.classList.add('visible');
       } else {
         submitBtn.textContent = 'Send Message';
         submitBtn.disabled = false;
@@ -89,6 +89,17 @@ if (bookForm) {
       submitBtn.disabled = false;
       alert('Something went wrong. Please try again.');
     }
+  });
+}
+
+// --- Book again button ---
+const bookAgainBtn = document.getElementById('bookAgainBtn');
+if (bookAgainBtn) {
+  bookAgainBtn.addEventListener('click', () => {
+    bookForm.reset();
+    bookForm.style.display = '';
+    formSuccess.classList.remove('visible');
+    bookForm.querySelectorAll('[required]').forEach(f => f.style.borderColor = '');
   });
 }
 

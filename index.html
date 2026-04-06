@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=26" />
+  <link rel="stylesheet" href="css/styles.css?v=27" />
 </head>
 <body>
 
@@ -328,12 +328,16 @@
             <textarea id="message" name="message" rows="4" placeholder="What are you working towards?"></textarea>
           </div>
           <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-          <p class="form-note">I'll respond within 24 hours.</p>
-          <div class="form-success" id="formSuccess" hidden>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            Message sent! I'll be in touch soon.
-          </div>
+          <p class="form-note">Coach Mike will be in touch within 1–2 business days.</p>
         </form>
+
+        <div class="form-success" id="formSuccess">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <h3>You're all set!</h3>
+          <p>Thank you for reaching out! Coach Mike personally reviews every message and will call or email you within <strong>1–2 business days</strong> to get started.</p>
+          <p>We're excited to be part of your journey. 💪</p>
+          <button class="btn btn-primary" id="bookAgainBtn">Book a Different Session</button>
+        </div>
       </div>
     </div>
   </section>
