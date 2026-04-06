@@ -72,17 +72,31 @@ if (bookForm) {
     if (formError) formError.textContent = '';
 
     try {
+      const payload = {
+        firstName: document.getElementById('firstName').value.trim(),
+        lastName:  document.getElementById('lastName').value.trim(),
+        email:     document.getElementById('email').value.trim(),
+        phone:     document.getElementById('phone').value.trim(),
+        service:   document.getElementById('service').value.trim(),
+        message:   document.getElementById('message').value.trim()
+      };
+
       const response = await fetch('https://formspree.io/f/mwvwaood', {
         method: 'POST',
-        body: new FormData(bookForm),
-        headers: { 'Accept': 'application/json' }
+        body: JSON.stringify(payload),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
       });
 
-      if (response.ok) {
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.ok !== false) {
         bookForm.style.display = 'none';
-        formSuccess.classList.add('visible');
+        const successEl = document.getElementById('formSuccess');
+        if (successEl) successEl.style.display = 'flex';
       } else {
-        const data = await response.json().catch(() => ({}));
         const msg = (data.errors && data.errors[0] && data.errors[0].message) || 'Something went wrong. Please try again.';
         if (formError) formError.textContent = msg;
         submitBtn.textContent = 'Send Message';
@@ -102,7 +116,8 @@ if (bookAgainBtn) {
   bookAgainBtn.addEventListener('click', () => {
     bookForm.reset();
     bookForm.style.display = '';
-    formSuccess.classList.remove('visible');
+    const successEl = document.getElementById('formSuccess');
+    if (successEl) successEl.style.display = 'none';
     bookForm.querySelectorAll('[required]').forEach(f => f.style.borderColor = '');
   });
 }
