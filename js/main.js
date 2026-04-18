@@ -243,18 +243,45 @@ if (bookAgainBtn) {
   let isPaused = false;
   let resumeTimer;
   let autoTimer;
+  let isInView = false;
+
+  // Manually animate scrollLeft so the PAGE never jumps
+  function smoothScroll(target) {
+    const start = carousel.scrollLeft;
+    const distance = target - start;
+    const duration = 600;
+    let startTime = null;
+    function step(ts) {
+      if (!startTime) startTime = ts;
+      const p = Math.min((ts - startTime) / duration, 1);
+      const ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
+      carousel.scrollLeft = start + distance * ease;
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
 
   function goTo(index) {
     current = (index + total) % total;
-    carousel.scrollTo({ left: cards[current].offsetLeft, behavior: 'smooth' });
+    smoothScroll(cards[current].offsetLeft);
   }
 
   function startAuto() {
     clearInterval(autoTimer);
-    autoTimer = setInterval(() => { if (!isPaused) goTo(current + 1); }, 4500);
+    autoTimer = setInterval(() => { if (!isPaused && isInView) goTo(current + 1); }, 4500);
   }
 
-  // Track scroll position to sync current index
+  // Only auto-advance when carousel is on screen
+  const inViewObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      isInView = entry.isIntersecting;
+      if (isInView) startAuto();
+      else clearInterval(autoTimer);
+    });
+  }, { threshold: 0.2 });
+  inViewObserver.observe(carousel);
+
+  // Sync current index when user manually swipes
   carousel.addEventListener('scroll', () => {
     const cardWidth = cards[0].offsetWidth + 20;
     current = Math.round(carousel.scrollLeft / cardWidth);
@@ -266,7 +293,7 @@ if (bookAgainBtn) {
     carousel.classList.toggle('paused', isPaused);
   });
 
-  // Mobile: touchstart pauses, touchend resumes after delay
+  // Mobile: touch pauses; resumes 3s after swipe or 1s after hold
   let touchStartX = 0;
   carousel.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
@@ -276,14 +303,11 @@ if (bookAgainBtn) {
 
   carousel.addEventListener('touchend', (e) => {
     const diff = Math.abs(touchStartX - e.changedTouches[0].clientX);
-    // Resume after 3s on swipe, immediately on hold-release with no movement
     resumeTimer = setTimeout(() => {
       isPaused = false;
       carousel.classList.remove('paused');
     }, diff > 10 ? 3000 : 1000);
   }, { passive: true });
-
-  startAuto();
 })();
 
 // --- Testimonial "See more / See less" ---
