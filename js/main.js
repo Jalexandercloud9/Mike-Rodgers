@@ -291,10 +291,18 @@ document.querySelectorAll('.testimonial-card').forEach(card => {
   const text = card.querySelector('.testimonial-text');
   const btn  = card.querySelector('.testimonial-toggle');
   if (!text || !btn) return;
+
+  // Only show button if text is actually truncated
+  if (text.scrollHeight <= text.clientHeight) {
+    btn.style.display = 'none';
+    return;
+  }
+
   btn.addEventListener('click', (e) => {
-    e.stopPropagation(); // don't trigger carousel pause
+    e.stopPropagation();
     const expanded = text.classList.toggle('expanded');
     btn.textContent = expanded ? 'See less' : 'See more';
+    // Re-check after expanding — hide if no longer needed
   });
 });
 
