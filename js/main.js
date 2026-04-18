@@ -232,6 +232,60 @@ if (bookAgainBtn) {
   resetTimer();
 })();
 
+// --- Testimonials horizontal carousel ---
+(function () {
+  const carousel = document.getElementById('testimonialsCarousel');
+  if (!carousel) return;
+
+  const cards = carousel.querySelectorAll('.testimonial-card');
+  const total = cards.length;
+  let current = 0;
+  let isPaused = false;
+  let resumeTimer;
+  let autoTimer;
+
+  function goTo(index) {
+    current = (index + total) % total;
+    cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  }
+
+  function startAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => { if (!isPaused) goTo(current + 1); }, 4500);
+  }
+
+  // Track scroll position to sync current index
+  carousel.addEventListener('scroll', () => {
+    const cardWidth = cards[0].offsetWidth + 20;
+    current = Math.round(carousel.scrollLeft / cardWidth);
+  }, { passive: true });
+
+  // Desktop: click to toggle pause
+  carousel.addEventListener('click', () => {
+    isPaused = !isPaused;
+    carousel.classList.toggle('paused', isPaused);
+  });
+
+  // Mobile: touchstart pauses, touchend resumes after delay
+  let touchStartX = 0;
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.touches[0].clientX;
+    isPaused = true;
+    clearTimeout(resumeTimer);
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', (e) => {
+    const diff = Math.abs(touchStartX - e.changedTouches[0].clientX);
+    // Resume after 3s on swipe, immediately on hold-release with no movement
+    resumeTimer = setTimeout(() => {
+      isPaused = false;
+      carousel.classList.remove('paused');
+    }, diff > 10 ? 3000 : 1000);
+  }, { passive: true });
+
+  startAuto();
+})();
+
 // --- Intersection Observer: fade-in sections on scroll ---
 const observerOpts = { threshold: 0.12 };
 const observer = new IntersectionObserver((entries) => {
