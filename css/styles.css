@@ -795,25 +795,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .testimonials-carousel {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-  padding: 8px 4px 24px;
+  overflow: hidden;
   margin-top: 40px;
   cursor: pointer;
   user-select: none;
 }
 
-.testimonials-carousel::-webkit-scrollbar {
-  display: none;
+.testimonials-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .testimonial-card {
-  flex: 0 0 82%;
-  scroll-snap-align: start;
+  flex: 0 0 100%;
   background: var(--white);
   border-radius: var(--radius);
   padding: 28px;
@@ -825,11 +820,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 @media (min-width: 640px) {
-  .testimonial-card { flex: 0 0 46%; }
+  .testimonial-card { flex: 0 0 calc(50% - 10px); }
 }
 
 @media (min-width: 1024px) {
-  .testimonial-card { flex: 0 0 30%; }
+  .testimonial-card { flex: 0 0 calc(33.333% - 14px); }
 }
 
 .testimonial-text {

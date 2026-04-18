@@ -235,65 +235,40 @@ if (bookAgainBtn) {
 // --- Testimonials horizontal carousel ---
 (function () {
   const carousel = document.getElementById('testimonialsCarousel');
-  if (!carousel) return;
+  const track   = document.getElementById('testimonialsTrack');
+  if (!carousel || !track) return;
 
-  const cards = carousel.querySelectorAll('.testimonial-card');
-  const total = cards.length;
-  let current = 0;
+  const cards = track.querySelectorAll('.testimonial-card');
+  const total  = cards.length;
+  let current  = 0;
   let isPaused = false;
-  let resumeTimer;
-  let autoTimer;
-  let isInView = false;
-
-  // Manually animate scrollLeft so the PAGE never jumps
-  function smoothScroll(target) {
-    const start = carousel.scrollLeft;
-    const distance = target - start;
-    const duration = 600;
-    let startTime = null;
-    function step(ts) {
-      if (!startTime) startTime = ts;
-      const p = Math.min((ts - startTime) / duration, 1);
-      const ease = p < 0.5 ? 2 * p * p : -1 + (4 - 2 * p) * p;
-      carousel.scrollLeft = start + distance * ease;
-      if (p < 1) requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
+  let resumeTimer, autoTimer;
 
   function goTo(index) {
     current = (index + total) % total;
-    smoothScroll(cards[current].offsetLeft);
+    const cardWidth = cards[0].offsetWidth + 20;
+    track.style.transform = `translateX(-${current * cardWidth}px)`;
   }
 
   function startAuto() {
     clearInterval(autoTimer);
-    autoTimer = setInterval(() => { if (!isPaused && isInView) goTo(current + 1); }, 4500);
+    autoTimer = setInterval(() => { if (!isPaused) goTo(current + 1); }, 4500);
   }
 
-  // Only auto-advance when carousel is on screen
+  // Only auto-advance when visible on screen
   const inViewObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      isInView = entry.isIntersecting;
-      if (isInView) startAuto();
-      else clearInterval(autoTimer);
-    });
+    if (entries[0].isIntersecting) startAuto();
+    else clearInterval(autoTimer);
   }, { threshold: 0.2 });
   inViewObserver.observe(carousel);
 
-  // Sync current index when user manually swipes
-  carousel.addEventListener('scroll', () => {
-    const cardWidth = cards[0].offsetWidth + 20;
-    current = Math.round(carousel.scrollLeft / cardWidth);
-  }, { passive: true });
-
-  // Desktop: click to toggle pause
+  // Desktop: click to pause/resume
   carousel.addEventListener('click', () => {
     isPaused = !isPaused;
     carousel.classList.toggle('paused', isPaused);
   });
 
-  // Mobile: touch pauses; resumes 3s after swipe or 1s after hold
+  // Mobile: swipe support + pause on touch
   let touchStartX = 0;
   carousel.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
@@ -302,11 +277,12 @@ if (bookAgainBtn) {
   }, { passive: true });
 
   carousel.addEventListener('touchend', (e) => {
-    const diff = Math.abs(touchStartX - e.changedTouches[0].clientX);
+    const diff = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) goTo(current + (diff > 0 ? 1 : -1));
     resumeTimer = setTimeout(() => {
       isPaused = false;
       carousel.classList.remove('paused');
-    }, diff > 10 ? 3000 : 1000);
+    }, 3000);
   }, { passive: true });
 })();
 
