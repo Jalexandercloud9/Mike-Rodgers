@@ -246,7 +246,7 @@ if (bookAgainBtn) {
 
   function goTo(index) {
     current = (index + total) % total;
-    cards[current].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+    carousel.scrollTo({ left: cards[current].offsetLeft, behavior: 'smooth' });
   }
 
   function startAuto() {
@@ -285,6 +285,18 @@ if (bookAgainBtn) {
 
   startAuto();
 })();
+
+// --- Testimonial "See more / See less" ---
+document.querySelectorAll('.testimonial-card').forEach(card => {
+  const text = card.querySelector('.testimonial-text');
+  const btn  = card.querySelector('.testimonial-toggle');
+  if (!text || !btn) return;
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation(); // don't trigger carousel pause
+    const expanded = text.classList.toggle('expanded');
+    btn.textContent = expanded ? 'See less' : 'See more';
+  });
+});
 
 // --- Intersection Observer: fade-in sections on scroll ---
 const observerOpts = { threshold: 0.12 };
