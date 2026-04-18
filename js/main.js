@@ -262,7 +262,9 @@ if (bookAgainBtn) {
   }, { threshold: 0.2 });
   inViewObserver.observe(carousel);
 
-  // Desktop: click to pause/resume
+  // Desktop: hover to pause/resume, click to toggle
+  carousel.addEventListener('mouseenter', () => { isPaused = true; });
+  carousel.addEventListener('mouseleave', () => { isPaused = false; });
   carousel.addEventListener('click', () => {
     isPaused = !isPaused;
     carousel.classList.toggle('paused', isPaused);
