@@ -272,11 +272,21 @@ if (bookAgainBtn) {
 
   // Mobile: swipe support + pause on touch
   let touchStartX = 0;
+  let touchStartY = 0;
+
   carousel.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
     isPaused = true;
     clearTimeout(resumeTimer);
   }, { passive: true });
+
+  carousel.addEventListener('touchmove', (e) => {
+    const dx = Math.abs(e.touches[0].clientX - touchStartX);
+    const dy = Math.abs(e.touches[0].clientY - touchStartY);
+    // If primarily horizontal, block page scroll
+    if (dx > dy && dx > 8) e.preventDefault();
+  }, { passive: false });
 
   carousel.addEventListener('touchend', (e) => {
     const diff = touchStartX - e.changedTouches[0].clientX;
