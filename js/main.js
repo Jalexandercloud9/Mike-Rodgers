@@ -93,13 +93,17 @@ if (bookForm) {
       const data = await response.json().catch(() => ({}));
 
       if (response.ok && data.ok !== false) {
+        // If Breakthrough Session, open Calendly after email is sent
+        if (serviceSelect && serviceSelect.value === '1-on-1 Breakthrough Session') {
+          window.open('https://calendly.com/lionheartfit35/30min', '_blank');
+        }
         bookForm.style.display = 'none';
         const successEl = document.getElementById('formSuccess');
         if (successEl) successEl.style.display = 'flex';
       } else {
         const msg = (data.errors && data.errors[0] && data.errors[0].message) || 'Something went wrong. Please try again.';
         if (formError) formError.textContent = msg;
-        submitBtn.textContent = 'Send Message';
+        submitBtn.textContent = serviceSelect && serviceSelect.value === '1-on-1 Breakthrough Session' ? 'Book Session' : 'Send Message';
         submitBtn.disabled = false;
       }
     } catch (err) {
@@ -110,12 +114,15 @@ if (bookForm) {
   });
 }
 
-// --- Calendly redirect for 1-on-1 Breakthrough Session ---
+// --- Swap submit button label when Breakthrough Session is selected ---
 const serviceSelect = document.getElementById('service');
-if (serviceSelect) {
+const submitBtn = bookForm && bookForm.querySelector('button[type="submit"]');
+if (serviceSelect && submitBtn) {
   serviceSelect.addEventListener('change', () => {
     if (serviceSelect.value === '1-on-1 Breakthrough Session') {
-      window.open('https://calendly.com/lionheartfit35/30min', '_blank');
+      submitBtn.textContent = 'Book Session';
+    } else {
+      submitBtn.textContent = 'Send Message';
     }
   });
 }
@@ -129,6 +136,7 @@ if (bookAgainBtn) {
     const successEl = document.getElementById('formSuccess');
     if (successEl) successEl.style.display = 'none';
     bookForm.querySelectorAll('[required]').forEach(f => f.style.borderColor = '');
+    if (submitBtn) submitBtn.textContent = 'Send Message';
   });
 }
 
