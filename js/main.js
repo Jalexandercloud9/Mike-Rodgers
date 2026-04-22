@@ -110,6 +110,16 @@ if (bookForm) {
   });
 }
 
+// --- Calendly redirect for 1-on-1 Breakthrough Session ---
+const serviceSelect = document.getElementById('service');
+if (serviceSelect) {
+  serviceSelect.addEventListener('change', () => {
+    if (serviceSelect.value === '1-on-1 Breakthrough Session') {
+      window.open('https://calendly.com/lionheartfit35/30min', '_blank');
+    }
+  });
+}
+
 // --- Book again button ---
 const bookAgainBtn = document.getElementById('bookAgainBtn');
 if (bookAgainBtn) {

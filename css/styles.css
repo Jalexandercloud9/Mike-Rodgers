@@ -407,6 +407,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .service-link:hover { color: var(--navy); }
 
+.service-badge {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+  vertical-align: middle;
+  margin-left: 8px;
+}
+
 /* =============================================
    MISSION
    ============================================= */
