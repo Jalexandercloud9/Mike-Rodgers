@@ -2,6 +2,18 @@
    MIKE RODGERS — MAIN JS
    ============================================= */
 
+// --- Intercept all anchor links to prevent URL hash from updating ---
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    const targetId = link.getAttribute('href').slice(1);
+    const target = document.getElementById(targetId);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
 // --- Navbar scroll effect ---
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
