@@ -3,16 +3,17 @@
    ============================================= */
 
 // --- Intercept all anchor links to prevent URL hash from updating ---
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const targetId = link.getAttribute('href').slice(1);
-    const target = document.getElementById(targetId);
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
+document.addEventListener('click', (e) => {
+  const link = e.target.closest('a[href^="#"]');
+  if (!link) return;
+  const targetId = link.getAttribute('href').slice(1);
+  if (!targetId) return;
+  const target = document.getElementById(targetId);
+  if (target) {
+    e.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+}, true);
 
 // --- Navbar scroll effect ---
 const navbar = document.getElementById('navbar');
