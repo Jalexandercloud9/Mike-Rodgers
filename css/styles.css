@@ -382,6 +382,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   height: 26px;
 }
 
+.service-eyebrow-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
 .service-card h3 {
   font-size: 1.15rem;
   font-weight: 700;
@@ -394,6 +403,34 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: var(--gray-500);
   line-height: 1.7;
   flex: 1;
+}
+
+.service-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+.service-list li {
+  font-size: 0.875rem;
+  color: var(--gray-500);
+  line-height: 1.55;
+  padding-left: 14px;
+  position: relative;
+}
+
+.service-list li::before {
+  content: '·';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.4;
 }
 
 .service-link {
