@@ -113,6 +113,11 @@ if (bookForm) {
         bookForm.style.display = 'none';
         const successEl = document.getElementById('formSuccess');
         if (successEl) successEl.style.display = 'flex';
+        // If 90-Day Dad Rebuild, show the enrollment confirm link
+        const confirmMsg = document.getElementById('successConfirmMsg');
+        if (confirmMsg) {
+          confirmMsg.style.display = serviceSelect && serviceSelect.value === '90-Day Dad Rebuild' ? 'block' : 'none';
+        }
       } else {
         const msg = (data.errors && data.errors[0] && data.errors[0].message) || 'Something went wrong. Please try again.';
         if (formError) formError.textContent = msg;
@@ -148,6 +153,8 @@ if (bookAgainBtn) {
     bookForm.style.display = '';
     const successEl = document.getElementById('formSuccess');
     if (successEl) successEl.style.display = 'none';
+    const confirmMsg = document.getElementById('successConfirmMsg');
+    if (confirmMsg) confirmMsg.style.display = 'none';
     bookForm.querySelectorAll('[required]').forEach(f => f.style.borderColor = '');
     if (submitBtn) submitBtn.textContent = 'Send Message';
   });
